@@ -13,10 +13,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<{ name: string; email: string }>) => {
+    login: (
+      state: any,
+      action: PayloadAction<{ name: string; email: string }>
+    ) => {
       state.currentUser = action.payload;
     },
-    logout: (state) => {
+    logout: (state: any) => {
       state.currentUser = null;
     },
   },
