@@ -1,24 +1,21 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import UserActionTypes from "./redux/user/actionTypes";
-import { loginUser, logoutUser } from "./redux/user/actions";
-// import rootReducer from "./redux/rootReducer";
+import { login, logout } from "./redux/user/slice";
 
 function App() {
-  const { currentUser } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
-  );
+  const { currentUser } = useSelector((state: any) => state.userReducer);
+
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    dispatch(loginUser({ name: "teste", email: "teste@getMaxListeners.com" }));
+    dispatch(login({ name: "teste", email: "teste@getMaxListeners.com" }));
   };
 
   const handleLogout = () => {
-    dispatch(logoutUser());
+    dispatch(logout());
   };
 
   console.log(currentUser);
+
   return (
     <div>
       <p>Login</p>
