@@ -13,6 +13,7 @@ const FormGroup: React.FC<FormGroupProps> = ({
   onClickCancel,
   beforesubmit,
   afterSubmit,
+  children,
 }) => {
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,6 +36,7 @@ const FormGroup: React.FC<FormGroupProps> = ({
 
   return (
     <Form>
+      {children}
       <Button label={labelButtonSubmit} onClick={() => handleFormSubmit} />
       <Button label={labelButtonCancel} onClick={() => onClickCancel} />
     </Form>

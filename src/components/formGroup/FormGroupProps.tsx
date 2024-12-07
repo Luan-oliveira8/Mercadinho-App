@@ -6,6 +6,7 @@ export interface FormGroupProps {
   className?: string;
   color?: string;
   style?: CSSProperties;
+  children?: React.ReactNode;
   onClickSubmit?: () => unknown;
   onClickCancel?: () => void;
   afterSubmit?: () => unknown;
