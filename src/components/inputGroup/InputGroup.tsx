@@ -25,7 +25,7 @@ const InputGroup: React.FC<InputGroupProps & { type?: InputType }> = ({
   onChange,
 }) => {
   return (
-    <div className="input-group" style={style}>
+    <div style={style}>
       <Label>{label}</Label>
       <Input
         id={id}
