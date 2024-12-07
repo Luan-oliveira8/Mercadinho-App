@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "./redux/user/slice";
 import Button from "./components/button/Button";
 import { ColorTypeEnum } from "./utils/enums/colorTypeEnum/ColorTypeEnum";
+import InputGroup from "./components/inputGroup/InputGroup";
 
 function App() {
   const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -29,6 +30,7 @@ function App() {
           className="border-2 d-flex align-items-center outline-success"
         />
       </div>
+      <InputGroup id="idteste" label="teste" />
     </>
   );
 }

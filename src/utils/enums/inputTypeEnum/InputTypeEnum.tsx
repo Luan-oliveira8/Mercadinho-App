@@ -8,8 +8,6 @@ export const InputTypeEnum = {
   TIME: { value: "time" },
   CHECKBOX: { value: "checkbox" },
   RADIO: { value: "radio" },
-  RANGE: { value: "range" },
-  COLOR: { value: "color" },
   TEL: { value: "tel" },
   SEARCH: { value: "search" },
 };
