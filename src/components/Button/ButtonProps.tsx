@@ -5,5 +5,5 @@ export interface ButtonProps {
   className?: string;
   color?: string;
   style?: CSSProperties;
-  onClick: () => void;
+  onClick?: () => void;
 }

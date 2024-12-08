@@ -1,10 +1,9 @@
 import { CSSProperties } from "react";
+import { RegisterOptions } from "react-hook-form";
 
 export interface InputGroupProps {
-  id: string;
+  name: string;
   label: string;
-  validation?: boolean;
-  type?: string;
+  validation?: RegisterOptions<any>;
   style?: CSSProperties;
-  onChange?: () => void;
 }

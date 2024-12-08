@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Form, Input } from "reactstrap";
+import { Form, Input, Label } from "reactstrap";
 import { UserRegisterProps } from "./UserRegisterProps"; // Importação do tipo
+import Button from "../components/button/Button";
+import InputGroup from "../components/inputGroup/InputGroup";
 
 const UserRegisterView: React.FC = () => {
   const { control, handleSubmit, watch, ...formProps } =
@@ -22,19 +24,31 @@ const UserRegisterView: React.FC = () => {
 
   return (
     <Form onSubmit={handleSubmit(handleSubmitForm)}>
-      <Controller
+      <InputGroup
         name="name"
+        label="password"
+        type="text"
         control={control}
-        defaultValue=""
-        render={({ field }) => <Input placeholder="teste" {...field} />}
+        validation={{
+          required: true,
+        }}
+        style={{ marginBottom: "10px" }}
       />
-      <Controller
+      <InputGroup
         name="password"
+        label="Password"
         control={control}
-        defaultValue=""
-        render={({ field }) => <Input placeholder="testeeee" {...field} />}
+        type="password"
+        validation={{
+          required: true,
+          minLength: {
+            value: 4,
+            message: "Password must be at least 6 characters",
+          },
+        }}
+        style={{ marginBottom: "10px" }}
       />
-      <Button type="submit">Submit</Button>
+      <Button label="Submit" />
     </Form>
   );
 };

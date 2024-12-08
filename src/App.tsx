@@ -31,8 +31,8 @@ function App() {
           color={ColorTypeEnum.PRIMARY.value}
           className="border-2 d-flex align-items-center outline-success"
         />
-      </div>
-      <FormGroup labelButtonSubmit="Submit" labelButtonCancel="Cancel">
+      </div> */}
+      {/* <FormGroup labelButtonSubmit="Submit" labelButtonCancel="Cancel">
         <InputGroup id="idteste" label="teste" />
         <InputGroup id="idteste" label="teste" />
       </FormGroup> */}

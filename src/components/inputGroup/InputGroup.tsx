@@ -1,6 +1,8 @@
 import React from "react";
-import { Input, Label } from "reactstrap";
+import { FormFeedback, Input, Label } from "reactstrap";
 import { InputGroupProps } from "./InputGroupProps";
+import { Control, Controller } from "react-hook-form";
+import { RegisterOptions } from "react-hook-form";
 
 type InputType =
   | "text"
@@ -16,23 +18,30 @@ type InputType =
   | "radio"
   | "search";
 
-const InputGroup: React.FC<InputGroupProps & { type?: InputType }> = ({
-  id,
-  label,
-  validation,
-  type = "text",
-  style,
-  onChange,
-}) => {
+const InputGroup: React.FC<
+  InputGroupProps & { control: Control<any>; type?: InputType }
+> = ({ name, label, validation, type = "text", style, control }) => {
   return (
     <div style={style}>
-      <Label>{label}</Label>
-      <Input
-        id={id}
-        validation={validation}
-        type={type}
-        onChange={onChange}
-        invalid={validation}
+      <Label for={name}>{label}</Label>
+      <Controller
+        name={name}
+        control={control}
+        defaultValue=""
+        rules={validation}
+        render={({ field, fieldState }) => (
+          <>
+            <Input
+              {...field}
+              type={type}
+              id={name}
+              invalid={!!fieldState?.error}
+            />
+            {fieldState?.error && (
+              <FormFeedback>{fieldState.error.message}</FormFeedback>
+            )}
+          </>
+        )}
       />
     </div>
   );

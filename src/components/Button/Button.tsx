@@ -15,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
       style={style}
       className={className}
       color={color}
+      type="submit"
     >
       {label}
     </ReactstrapButton>
