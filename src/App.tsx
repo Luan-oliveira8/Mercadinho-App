@@ -4,6 +4,7 @@ import Button from "./components/button/Button";
 import { ColorTypeEnum } from "./utils/enums/colorTypeEnum/ColorTypeEnum";
 import InputGroup from "./components/inputGroup/InputGroup";
 import FormGroup from "./components/formGroup/FormGroup";
+import UserRegisterView from "./views/UserRegisterView";
 
 function App() {
   const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Button label="Login" onClick={handleLogin} />
         <Button
           label="Logout"
@@ -34,7 +35,8 @@ function App() {
       <FormGroup labelButtonSubmit="Submit" labelButtonCancel="Cancel">
         <InputGroup id="idteste" label="teste" />
         <InputGroup id="idteste" label="teste" />
-      </FormGroup>
+      </FormGroup> */}
+      <UserRegisterView />
     </>
   );
 }
