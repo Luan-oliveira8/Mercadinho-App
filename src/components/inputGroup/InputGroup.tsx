@@ -2,7 +2,6 @@ import React from "react";
 import { FormFeedback, Input, Label } from "reactstrap";
 import { InputGroupProps } from "./InputGroupProps";
 import { Control, Controller } from "react-hook-form";
-import { RegisterOptions } from "react-hook-form";
 
 type InputType =
   | "text"

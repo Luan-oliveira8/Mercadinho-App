@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { Form, Input, Label } from "reactstrap";
-import { UserRegisterProps } from "./UserRegisterProps"; // Importação do tipo
+import { useForm } from "react-hook-form";
+import { Form } from "reactstrap";
+import { UserRegisterProps } from "./UserRegisterProps";
 import Button from "../components/button/Button";
 import InputGroup from "../components/inputGroup/InputGroup";
 
