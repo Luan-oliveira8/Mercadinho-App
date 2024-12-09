@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { UserRegisterProps } from "./UserRegisterProps";
 import InputGroup from "../components/inputGroup/InputGroup";
 import FormGroup from "../components/formGroup/FormGroup";
+import { USER_REGISTER } from "../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
+import { HttpStatusCode } from "../utils/enums/httpStatusCode/HttpStatusCode";
 
 const UserRegisterView: React.FC = () => {
   const formProps = useForm<UserRegisterProps>();
@@ -16,8 +19,12 @@ const UserRegisterView: React.FC = () => {
     [whatchName]
   );
 
-  const handleSubmitForm = (formData: UserRegisterProps) => {
-    console.log("Form submitted with data:", formData);
+  const handleSubmitForm = async (formData: UserRegisterProps) => {
+    const response = await axios.post(USER_REGISTER.value, formData);
+
+    if (response.status === HttpStatusCode.CREATED) {
+      console.log(response.statusText);
+    }
   };
 
   return (

@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Button label="Login" onClick={handleLogin} />
         <Button
           label="Logout"
@@ -29,7 +29,7 @@ function App() {
           color={ColorTypeEnum.PRIMARY.value}
           className="border-2 d-flex align-items-center outline-success"
         />
-      </div>
+      </div> */}
       <UserRegisterView />
     </>
   );
