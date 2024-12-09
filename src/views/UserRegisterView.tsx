@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Form } from "reactstrap";
 import { UserRegisterProps } from "./UserRegisterProps";
-import Button from "../components/button/Button";
 import InputGroup from "../components/inputGroup/InputGroup";
 import FormGroup from "../components/formGroup/FormGroup";
 
