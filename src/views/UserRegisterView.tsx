@@ -5,7 +5,7 @@ import { UserRegisterProps } from "./UserRegisterProps";
 import InputGroup from "../components/inputGroup/InputGroup";
 import FormGroup from "../components/formGroup/FormGroup";
 import { USER_REGISTER } from "../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
-import { HttpStatusCodeEnum } from "../utils/enums/httpStatusCodeEnum/HttpStatusCodeEnum";
+import { HttpStatusCodeTypeEnum } from "../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 
 const UserRegisterView: React.FC = () => {
   const formProps = useForm<UserRegisterProps>();
@@ -22,7 +22,7 @@ const UserRegisterView: React.FC = () => {
   const handleSubmitForm = async (formData: UserRegisterProps) => {
     const response = await axios.post(USER_REGISTER.value, formData);
 
-    if (response.status === HttpStatusCodeEnum.CREATED) {
+    if (response.status === HttpStatusCodeTypeEnum.CREATED) {
       console.log(response.statusText);
     }
   };
