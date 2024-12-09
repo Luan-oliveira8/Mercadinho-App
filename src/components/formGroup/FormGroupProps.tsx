@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { FieldValue, UseFormProps, UseFormReturn } from "react-hook-form";
 
 export interface FormGroupProps {
   labelButtonSubmit?: string;
@@ -7,8 +8,9 @@ export interface FormGroupProps {
   color?: string;
   style?: CSSProperties;
   children?: React.ReactNode;
-  onClickSubmit?: () => unknown;
+  onSubmit?: (formData: any) => unknown;
   onClickCancel?: () => void;
   afterSubmit?: () => unknown;
   beforesubmit?: () => unknown;
+  formProps: UseFormReturn;
 }

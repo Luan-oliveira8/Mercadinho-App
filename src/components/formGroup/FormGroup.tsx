@@ -7,27 +7,26 @@ const FormGroup: React.FC<FormGroupProps> = ({
   className,
   color,
   style,
-  labelButtonSubmit = "Salvar",
+  labelButtonSubmit = "Submit",
   labelButtonCancel = "Calcelar",
-  onClickSubmit,
+  onSubmit,
   onClickCancel,
   beforesubmit,
   afterSubmit,
   children,
+  formProps,
 }) => {
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (beforesubmit && onClickSubmit) {
+  const handleFormSubmit = async (formData?: any) => {
+    if (beforesubmit && onSubmit) {
       await beforesubmit();
-      onClickSubmit();
+      onSubmit(formData);
     }
-    if (afterSubmit && onClickSubmit) {
-      await onClickSubmit();
+    if (afterSubmit && onSubmit) {
+      await onSubmit(formData);
       afterSubmit();
     }
-    if (onClickSubmit) {
-      onClickSubmit();
+    if (onSubmit) {
+      onSubmit(formData);
     }
     if (onClickCancel) {
       onClickCancel();
@@ -37,8 +36,10 @@ const FormGroup: React.FC<FormGroupProps> = ({
   return (
     <Form>
       {children}
-      <Button label={labelButtonSubmit} onClick={() => handleFormSubmit} />
-      <Button label={labelButtonCancel} onClick={() => onClickCancel} />
+      <Button
+        label={labelButtonSubmit}
+        onClick={formProps.handleSubmit(handleFormSubmit)}
+      />
     </Form>
   );
 };

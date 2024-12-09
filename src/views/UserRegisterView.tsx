@@ -4,12 +4,12 @@ import { Form } from "reactstrap";
 import { UserRegisterProps } from "./UserRegisterProps";
 import Button from "../components/button/Button";
 import InputGroup from "../components/inputGroup/InputGroup";
+import FormGroup from "../components/formGroup/FormGroup";
 
 const UserRegisterView: React.FC = () => {
-  const { control, handleSubmit, watch, ...formProps } =
-    useForm<UserRegisterProps>();
+  const formProps = useForm<UserRegisterProps>();
 
-  const whatchName = watch("name");
+  const whatchName = formProps.watch("name");
 
   useEffect(
     () => {
@@ -18,17 +18,21 @@ const UserRegisterView: React.FC = () => {
     [whatchName]
   );
 
-  const handleSubmitForm = (data: UserRegisterProps) => {
-    console.log("Form submitted with data:", formProps.getValues());
+  const handleSubmitForm = (formData: UserRegisterProps) => {
+    console.log("Form submitted with data:", formData);
   };
 
   return (
-    <Form onSubmit={handleSubmit(handleSubmitForm)}>
+    <FormGroup
+      onSubmit={handleSubmitForm}
+      formProps={formProps}
+      labelButtonSubmit="Sign Up"
+    >
       <InputGroup
         name="name"
-        label="password"
+        label="Name"
         type="text"
-        control={control}
+        control={formProps.control}
         validation={{
           required: true,
         }}
@@ -37,7 +41,7 @@ const UserRegisterView: React.FC = () => {
       <InputGroup
         name="password"
         label="Password"
-        control={control}
+        control={formProps.control}
         type="password"
         validation={{
           required: true,
@@ -48,8 +52,7 @@ const UserRegisterView: React.FC = () => {
         }}
         style={{ marginBottom: "10px" }}
       />
-      <Button label="Submit" />
-    </Form>
+    </FormGroup>
   );
 };
 
