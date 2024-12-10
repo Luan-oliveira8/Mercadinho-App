@@ -2,28 +2,27 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { UserRegisterProps } from "./UserRegisterProps";
-import InputGroup from "../components/inputGroup/InputGroup";
-import FormGroup from "../components/formGroup/FormGroup";
-import { USER_REGISTER } from "../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
-import { HttpStatusCodeTypeEnum } from "../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
+import InputGroup from "../../components/inputGroup/InputGroup";
+import FormGroup from "../../components/formGroup/FormGroup";
+import { USER_REGISTER } from "../../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
+import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 
 const UserRegisterView: React.FC = () => {
   const formProps = useForm<UserRegisterProps>();
 
-  const whatchName = formProps.watch("name");
-
-  useEffect(
-    () => {
-      console.log("Valores atualizados do formulário:", formProps.getValues());
-    }, // eslint-disable-next-line
-    [whatchName]
-  );
-
   const handleSubmitForm = async (formData: UserRegisterProps) => {
-    const response = await axios.post(USER_REGISTER.value, formData);
+    try {
+      const response = await axios.post(USER_REGISTER.value, formData);
 
-    if (response.status === HttpStatusCodeTypeEnum.CREATED) {
-      console.log(response.statusText);
+      if (response.status === HttpStatusCodeTypeEnum.CREATED) {
+        console.log(response.statusText);
+      } else {
+        console.log("User not registered.");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(`Something went wrong status: ${error.status}.`);
+      }
     }
   };
 
@@ -40,6 +39,20 @@ const UserRegisterView: React.FC = () => {
         control={formProps.control}
         validation={{
           required: true,
+        }}
+        style={{ marginBottom: "10px" }}
+      />
+      <InputGroup
+        name="email"
+        label="E-mail"
+        type="email"
+        control={formProps.control}
+        validation={{
+          required: "The email field is required",
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: "Please enter a valid email address",
+          },
         }}
         style={{ marginBottom: "10px" }}
       />
