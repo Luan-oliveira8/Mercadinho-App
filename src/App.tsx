@@ -1,4 +1,4 @@
-import CreateProduct from "./views/createProduct/CreateProductView";
+import CreateProductView from "./views/productRegister/ProductRegisterView";
 import UserRegisterView from "./views/userRegister/UserRegisterView";
 import UserLoginView from "./views/userlogin/UserLoginView";
 
@@ -7,7 +7,7 @@ function App() {
     <>
       {/* <UserRegisterView /> */}
       {/* <UserLoginView /> */}
-      <CreateProduct />
+      <CreateProductView />
     </>
   );
 }

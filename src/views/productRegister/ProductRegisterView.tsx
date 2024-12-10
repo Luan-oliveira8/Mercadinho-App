@@ -4,13 +4,13 @@ import axios from "axios";
 import InputGroup from "../../components/inputGroup/InputGroup";
 import FormGroup from "../../components/formGroup/FormGroup";
 import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
-import { CreateProductProps } from "./CreateProductProps";
+import { ProductRegisterProps } from "./ProductRegisterProps";
 import { PRODUCT_REGISTER } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 
-const CreateProduct: React.FC = () => {
-  const formProps = useForm<CreateProductProps>();
+const ProductRegisterPropsView: React.FC = () => {
+  const formProps = useForm<ProductRegisterProps>();
 
-  const handleSubmitForm = async (formData: CreateProductProps) => {
+  const handleSubmitForm = async (formData: ProductRegisterProps) => {
     try {
       const response = await axios.post(PRODUCT_REGISTER.value, formData);
       if (response.status === HttpStatusCodeTypeEnum.CREATED) {
@@ -77,4 +77,4 @@ const CreateProduct: React.FC = () => {
   );
 };
 
-export default CreateProduct;
+export default ProductRegisterPropsView;
