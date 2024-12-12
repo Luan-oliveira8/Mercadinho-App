@@ -5,14 +5,14 @@ import InputGroup from "../../components/inputGroup/InputGroup";
 import FormGroup from "../../components/formGroup/FormGroup";
 import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { ProductRegisterProps } from "./ProductRegisterProps";
-import { PRODUCT_REGISTER } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
+import { REGISTER_PRODUCT } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 
 const ProductRegisterPropsView: React.FC = () => {
   const formProps = useForm<ProductRegisterProps>();
 
   const handleSubmitForm = async (formData: ProductRegisterProps) => {
     try {
-      const response = await axios.post(PRODUCT_REGISTER.value, formData);
+      const response = await axios.post(REGISTER_PRODUCT.value, formData);
       if (response.status === HttpStatusCodeTypeEnum.CREATED) {
         console.log(response.statusText);
       } else {

@@ -35,12 +35,7 @@ const SearchDataGrid = ({ data, columns }: SearchDataGridProps<any>) => {
             >
               <td className="text-center">{index + 1}</td>
               {columns.map((column, colIndex) => (
-                <td key={colIndex}>
-                  {typeof item[column.key] !== "string" &&
-                  typeof item[column.key] !== "number"
-                    ? String(item[column.key])
-                    : item[column.key]}
-                </td>
+                <td key={colIndex}>{String(item[column.key])}</td>
               ))}
               <td>
                 <MdModeEdit className="me-2" style={{ cursor: "pointer" }} />

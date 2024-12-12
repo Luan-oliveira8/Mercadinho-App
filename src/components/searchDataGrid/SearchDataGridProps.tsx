@@ -1,6 +1,4 @@
-export interface SearchDataGridProps<
-  T extends Record<string | number, unknown>
-> {
+export interface SearchDataGridProps<T> {
   data: T[];
   columns: {
     key: keyof T;

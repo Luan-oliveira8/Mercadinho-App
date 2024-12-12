@@ -1,7 +1,11 @@
 import MERCADINHO_BASE_URL from "../../../config/apiConfig/ApiConfig";
 
-export const PRODUCT_REGISTER = {
+export const REGISTER_PRODUCT = {
   value: `${MERCADINHO_BASE_URL}/products/register`,
 };
 
-export const PRODUCT_URL_TYPE_ENUM = [PRODUCT_REGISTER];
+export const GET_PRODUCTS = {
+  value: `${MERCADINHO_BASE_URL}/products`,
+};
+
+export const PRODUCT_URL_TYPE_ENUM = [REGISTER_PRODUCT, GET_PRODUCTS];
