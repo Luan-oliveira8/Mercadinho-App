@@ -7,7 +7,7 @@ import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum
 import { ProductRegisterProps } from "./ProductRegisterProps";
 import { REGISTER_PRODUCT } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 
-const ProductRegisterPropsView: React.FC = () => {
+const ProductRegisterView: React.FC = () => {
   const formProps = useForm<ProductRegisterProps>();
 
   const handleSubmitForm = async (formData: ProductRegisterProps) => {
@@ -77,4 +77,4 @@ const ProductRegisterPropsView: React.FC = () => {
   );
 };
 
-export default ProductRegisterPropsView;
+export default ProductRegisterView;
