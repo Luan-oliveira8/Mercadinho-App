@@ -3,9 +3,10 @@ import axios from "axios";
 import { GET_PRODUCTS } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import SearchDataGrid from "../../components/searchDataGrid/SearchDataGrid";
+import { Product } from "../../models/product/Product";
 
 const ProductListView: React.FC = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     findProducts();
