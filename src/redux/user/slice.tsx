@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
-  currentUser: { name: string; email: string } | null;
+  currentUser: { name: string; email: string; isLogged: boolean };
 }
 
 const initialState: UserState = {
-  currentUser: null,
+  currentUser: { name: "", email: "", isLogged: false },
 };
 
 const userSlice = createSlice({
@@ -14,7 +14,7 @@ const userSlice = createSlice({
   reducers: {
     login: (
       state: any,
-      action: PayloadAction<{ name: string; email: string }>
+      action: PayloadAction<{ name: string; email: string; isLogged: boolean }>
     ) => {
       state.currentUser = action.payload;
     },

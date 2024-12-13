@@ -30,7 +30,11 @@ const UserLoginView: React.FC = () => {
         console.log(response.data);
 
         dispatch(
-          login({ name: response.data.name, email: response.data.email })
+          login({
+            name: response.data.name,
+            email: response.data.email,
+            isLogged: true,
+          })
         );
       } else {
         console.log(
