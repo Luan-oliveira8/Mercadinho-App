@@ -6,7 +6,7 @@ import axios from "axios";
 import InputGroup from "../../components/inputGroup/InputGroup";
 import FormGroup from "../../components/formGroup/FormGroup";
 import { USER_LOGIN } from "../../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
-import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
+import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { UserLoginProps } from "./UserLoginProps";
 import { User } from "../../models/user/User";
 
@@ -26,7 +26,7 @@ const UserLoginView: React.FC = () => {
     try {
       const response = await axios.post<User>(USER_LOGIN.value, formData);
 
-      if (response.status === HttpStatusCodeTypeEnum.OK) {
+      if (response.status === OK.value) {
         console.log(response.data);
 
         dispatch(

@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import InputGroup from "../../components/inputGroup/InputGroup";
 import FormGroup from "../../components/formGroup/FormGroup";
-import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { ProductRegisterProps } from "./ProductRegisterProps";
 import { REGISTER_PRODUCT } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
+import { CREATED } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 
 const ProductRegisterView: React.FC = () => {
   const formProps = useForm<ProductRegisterProps>();
@@ -13,7 +13,7 @@ const ProductRegisterView: React.FC = () => {
   const handleSubmitForm = async (formData: ProductRegisterProps) => {
     try {
       const response = await axios.post(REGISTER_PRODUCT.value, formData);
-      if (response.status === HttpStatusCodeTypeEnum.CREATED) {
+      if (response.status === CREATED.value) {
         console.log(response.statusText);
       } else {
         console.log("Product not registered.");

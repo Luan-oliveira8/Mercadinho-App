@@ -1,6 +1,22 @@
-export enum HttpStatusCodeTypeEnum {
-  OK = 200,
-  CREATED = 201,
-  BAD_REQUEST = 400,
-  SERVER_ERROR = 500,
-}
+export const OK = {
+  value: 200,
+};
+
+export const CREATED = {
+  value: 201,
+};
+
+export const BAD_REQUEST = {
+  value: 400,
+};
+
+export const SERVER_ERROR = {
+  value: 500,
+};
+
+export const HTTPS_STATUS_CODE_TYPE_ENUM = [
+  OK,
+  CREATED,
+  BAD_REQUEST,
+  SERVER_ERROR,
+];

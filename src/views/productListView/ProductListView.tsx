@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GET_PRODUCTS } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
-import { HttpStatusCodeTypeEnum } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
+import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import SearchDataGrid from "../../components/searchDataGrid/SearchDataGrid";
 
 const ProductListView: React.FC = () => {
@@ -16,7 +16,7 @@ const ProductListView: React.FC = () => {
     try {
       const response = await axios.get(GET_PRODUCTS.value);
 
-      if (response.status === HttpStatusCodeTypeEnum.OK) {
+      if (response.status === OK.value) {
         setProducts(response.data);
       } else {
         console.log("No products found");
