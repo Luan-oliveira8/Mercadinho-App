@@ -4,9 +4,16 @@ import { useSelector } from "react-redux";
 import ProductListView from "../views/productListView/ProductListView";
 import UserRegisterView from "../views/userRegister/UserRegisterView";
 import UserLoginView from "../views/userlogin/UserLoginView";
-import ProductRegisterView from "../views/productRegister/ProductRegisterView";
+import ProductManageView from "../views/productManage/ProductManageView";
 import PrivateRoute from "../components/privateRoute/PrivateRoute";
 import Layout from "../components/layout/Layout";
+import {
+  ROUTE_EDIT_PRODUCT,
+  ROUTE_LIST_PRODUCT,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER_PRODUCT,
+  ROUTE_REGISTER_USER,
+} from "../utils/enums/routeUrlTypeEnum/RouteUrlTypeEnum";
 
 const AppRoutes: React.FC = () => {
   const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -23,7 +30,7 @@ const AppRoutes: React.FC = () => {
       ),
     },
     {
-      path: "/login",
+      path: ROUTE_LOGIN.value,
       element: (
         <Layout>
           <UserLoginView />
@@ -31,7 +38,7 @@ const AppRoutes: React.FC = () => {
       ),
     },
     {
-      path: "/user/register",
+      path: ROUTE_REGISTER_USER.value,
       element: (
         <Layout>
           <UserRegisterView />
@@ -39,17 +46,27 @@ const AppRoutes: React.FC = () => {
       ),
     },
     {
-      path: "/product/register",
+      path: ROUTE_REGISTER_PRODUCT.value,
       element: (
         <PrivateRoute isLogged={isLogged}>
           <Layout>
-            <ProductRegisterView />
+            <ProductManageView />
           </Layout>
         </PrivateRoute>
       ),
     },
     {
-      path: "/product/list",
+      path: ROUTE_EDIT_PRODUCT.value,
+      element: (
+        <PrivateRoute isLogged={isLogged}>
+          <Layout>
+            <ProductManageView />
+          </Layout>
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: ROUTE_LIST_PRODUCT.value,
       element: (
         <PrivateRoute isLogged={isLogged}>
           <Layout>

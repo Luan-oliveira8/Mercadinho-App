@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   DELETE_PRODUCTS,
-  EDIT_PRODUCT,
   GET_PRODUCTS,
 } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import SearchDataGrid from "../../components/searchDataGrid/SearchDataGrid";
 import { Product } from "../../models/product/Product";
+import { ROUTE_EDIT_PRODUCT } from "../../utils/enums/routeUrlTypeEnum/RouteUrlTypeEnum";
 
 const ProductListView: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -46,7 +46,7 @@ const ProductListView: React.FC = () => {
       <SearchDataGrid
         data={products}
         columns={columns}
-        editUrl={EDIT_PRODUCT.value}
+        editUrl={ROUTE_EDIT_PRODUCT.value}
         deleteUrl={DELETE_PRODUCTS.value}
       />
     </div>

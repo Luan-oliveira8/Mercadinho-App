@@ -13,7 +13,7 @@ export const DELETE_PRODUCTS = {
 };
 
 export const EDIT_PRODUCT = {
-  value: "/product/register",
+  value: `${MERCADINHO_BASE_URL}/products/edit/`,
 };
 
 export const PRODUCT_URL_TYPE_ENUM = [REGISTER_PRODUCT, GET_PRODUCTS];
