@@ -1,7 +1,7 @@
 import React from "react";
 import { FormGroup as Form } from "reactstrap";
 import { FormGroupProps } from "./FormGroupProps";
-import Button from "../button/Button";
+import Button from "../button/Button1";
 
 const FormGroup: React.FC<FormGroupProps> = ({
   className,
