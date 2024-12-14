@@ -5,4 +5,6 @@ export interface SearchDataGridProps<T> {
     label: string;
     width?: string;
   }[];
+  editUrl: string;
+  deleteUrl?: string;
 }

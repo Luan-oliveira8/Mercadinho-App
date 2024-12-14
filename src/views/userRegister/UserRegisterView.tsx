@@ -19,10 +19,8 @@ const UserRegisterView: React.FC = () => {
       } else {
         console.log("User not registered.");
       }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(`Something went wrong status: ${error.status}.`);
-      }
+    } catch (error: any) {
+      console.log(`Something went wrong status: ${error.status}.`);
     }
   };
 

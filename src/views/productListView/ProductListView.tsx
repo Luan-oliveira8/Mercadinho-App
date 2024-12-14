@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { GET_PRODUCTS } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
+import {
+  DELETE_PRODUCTS,
+  EDIT_PRODUCT,
+  GET_PRODUCTS,
+} from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import SearchDataGrid from "../../components/searchDataGrid/SearchDataGrid";
 import { Product } from "../../models/product/Product";
@@ -8,10 +12,12 @@ import { Product } from "../../models/product/Product";
 const ProductListView: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    findProducts();
-    console.log(products);
-  }, [products]);
+  useEffect(
+    () => {
+      findProducts();
+    }, // eslint-disable-next-line
+    []
+  );
 
   const findProducts = async () => {
     try {
@@ -37,7 +43,12 @@ const ProductListView: React.FC = () => {
   return (
     <div className="App">
       <h1>Search Data Grid</h1>
-      <SearchDataGrid data={products} columns={columns} />
+      <SearchDataGrid
+        data={products}
+        columns={columns}
+        editUrl={EDIT_PRODUCT.value}
+        deleteUrl={DELETE_PRODUCTS.value}
+      />
     </div>
   );
 };

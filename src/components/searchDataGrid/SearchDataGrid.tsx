@@ -1,14 +1,40 @@
 import { useState } from "react";
-import { Table } from "reactstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
+import { Table } from "reactstrap";
 import { SearchDataGridProps } from "./SearchDataGridProps";
+import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 
-const SearchDataGrid = ({ data, columns }: SearchDataGridProps<any>) => {
+const SearchDataGrid = ({
+  data,
+  columns,
+  editUrl,
+  deleteUrl,
+}: SearchDataGridProps<any>) => {
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const handleRowClick = (index: number) => {
     setFocusedRow(index);
+  };
+
+  const handleEdit = (selectedItem: any) => {
+    navigate(editUrl, { state: { selectedItem } });
+  };
+
+  const handleDelete = async (selectedItem: any) => {
+    try {
+      const response = await axios.delete(`${deleteUrl}${selectedItem.id}`);
+      if (response.status === OK.value) {
+        console.log();
+      } else {
+        console.log("Failed to delete the product. Please try again later.");
+      }
+    } catch (error: any) {
+      console.log(`Something went wrong status: ${error.status}.`);
+    }
   };
 
   return (
@@ -38,8 +64,16 @@ const SearchDataGrid = ({ data, columns }: SearchDataGridProps<any>) => {
                 <td key={colIndex}>{String(item[column.key])}</td>
               ))}
               <td>
-                <MdModeEdit className="me-2" style={{ cursor: "pointer" }} />
-                <FaTimes className="me-2" style={{ cursor: "pointer" }} />
+                <MdModeEdit
+                  className="me-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleEdit(item)}
+                />
+                <FaTimes
+                  className="me-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleDelete(item)}
+                />
               </td>
             </tr>
           ))}

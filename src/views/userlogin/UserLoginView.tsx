@@ -41,10 +41,8 @@ const UserLoginView: React.FC = () => {
           "Login failed. Please check your email and password and try again."
         );
       }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(`Something went wrong status: ${error.status}.`);
-      }
+    } catch (error: any) {
+      console.log(`Something went wrong status: ${error.status}.`);
     }
   };
 
