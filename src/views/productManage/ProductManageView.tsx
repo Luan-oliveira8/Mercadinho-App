@@ -25,10 +25,6 @@ const ProductManageView: React.FC = () => {
         formProps.setValue("barcode", selectedItem.barcode);
         formProps.setValue("name", selectedItem.name);
         formProps.setValue("selPrice", selectedItem.selPrice);
-      } else {
-        formProps.setValue("barcode", undefined);
-        formProps.setValue("name", undefined);
-        formProps.setValue("selPrice", undefined);
       }
     }, // eslint-disable-next-line
     [selectedItem]

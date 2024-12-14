@@ -50,7 +50,7 @@ const AppRoutes: React.FC = () => {
       element: (
         <PrivateRoute isLogged={isLogged}>
           <Layout>
-            <ProductManageView />
+            <ProductManageView key="register" />
           </Layout>
         </PrivateRoute>
       ),
@@ -60,7 +60,7 @@ const AppRoutes: React.FC = () => {
       element: (
         <PrivateRoute isLogged={isLogged}>
           <Layout>
-            <ProductManageView />
+            <ProductManageView key="edit" />
           </Layout>
         </PrivateRoute>
       ),
