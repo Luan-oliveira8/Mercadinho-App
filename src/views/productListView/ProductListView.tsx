@@ -7,7 +7,7 @@ import {
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import SearchDataGrid from "../../components/searchDataGrid/SearchDataGrid";
 import { Product } from "../../models/product/Product";
-import { ROUTE_EDIT_PRODUCT } from "../../utils/enums/routeUrlTypeEnum/RouteUrlTypeEnum";
+import { ROUTE_EDIT_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 
 const ProductListView: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

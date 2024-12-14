@@ -13,7 +13,7 @@ import {
   ROUTE_LOGIN,
   ROUTE_REGISTER_PRODUCT,
   ROUTE_REGISTER_USER,
-} from "../utils/enums/routeUrlTypeEnum/RouteUrlTypeEnum";
+} from "../utils/enums/routeTypeEnum/RouteTypeEnum";
 
 const AppRoutes: React.FC = () => {
   const { currentUser } = useSelector((state: any) => state.userReducer);
