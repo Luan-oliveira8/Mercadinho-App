@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
@@ -8,13 +8,35 @@ import { SearchDataGridProps } from "./SearchDataGridProps";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 
 const SearchDataGrid = ({
-  data,
   columns,
   editUrl,
   deleteUrl,
+  getDataUrl,
 }: SearchDataGridProps<any>) => {
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
   const navigate = useNavigate();
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(
+    () => {
+      findData();
+    }, // eslint-disable-next-line
+    []
+  );
+
+  const findData = async () => {
+    try {
+      const response = await axios.get(getDataUrl);
+
+      if (response.status === OK.value) {
+        setData(response.data);
+      } else {
+        console.log("No data found");
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
   const handleRowClick = (index: number) => {
     setFocusedRow(index);
@@ -28,7 +50,8 @@ const SearchDataGrid = ({
     try {
       const response = await axios.delete(`${deleteUrl}${selectedItem.id}`);
       if (response.status === OK.value) {
-        console.log();
+        console.log("Data deleted successfully");
+        setData(data.filter((it) => it.id !== selectedItem.id));
       } else {
         console.log("Failed to delete the product. Please try again later.");
       }

@@ -1,5 +1,4 @@
 export interface SearchDataGridProps<T> {
-  data: T[];
   columns: {
     key: keyof T;
     label: string;
@@ -7,4 +6,5 @@ export interface SearchDataGridProps<T> {
   }[];
   editUrl: string;
   deleteUrl?: string;
+  getDataUrl: string;
 }
