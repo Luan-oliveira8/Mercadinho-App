@@ -5,9 +5,10 @@ import {
 } from "../../utils/enums/productUrlTypeEnum/ProductUrlTypeEnum";
 import SearchDataGrid from "../../components/searchDataGrid/SearchDataGrid";
 import { ROUTE_EDIT_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
+import { ColumnProps } from "../../components/searchDataGrid/SearchDataGridProps";
 
 const ProductListView: React.FC = () => {
-  const columns = [
+  const columns: ColumnProps[] = [
     { key: "id", label: "ID", width: "20%" },
     { key: "name", label: "Product name", width: "20%" },
     { key: "barcode", label: "Barcode", width: "20%" },
@@ -15,15 +16,13 @@ const ProductListView: React.FC = () => {
   ];
 
   return (
-    <div className="App">
-      <h1>Search Data Grid</h1>
-      <SearchDataGrid
-        columns={columns}
-        editUrl={ROUTE_EDIT_PRODUCT.value}
-        deleteUrl={DELETE_PRODUCTS.value}
-        getDataUrl={GET_PRODUCTS.value}
-      />
-    </div>
+    <SearchDataGrid
+      titleGrid="Products"
+      columns={columns}
+      editUrl={ROUTE_EDIT_PRODUCT.value}
+      deleteUrl={DELETE_PRODUCTS.value}
+      getDataUrl={GET_PRODUCTS.value}
+    />
   );
 };
 

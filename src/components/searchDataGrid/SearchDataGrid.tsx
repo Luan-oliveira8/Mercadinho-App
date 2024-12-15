@@ -12,6 +12,7 @@ const SearchDataGrid = ({
   editUrl,
   deleteUrl,
   getDataUrl,
+  titleGrid,
 }: SearchDataGridProps<any>) => {
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
   const navigate = useNavigate();
@@ -61,8 +62,9 @@ const SearchDataGrid = ({
   };
 
   return (
-    <div className="table-responsive text-center">
-      <Table bordered>
+    <>
+      <h1 className="ms-3">{titleGrid}</h1>
+      <Table bordered className="table-responsive text-center">
         <thead>
           <tr>
             <th style={{ width: "10%" }}>#</th>
@@ -102,7 +104,7 @@ const SearchDataGrid = ({
           ))}
         </tbody>
       </Table>
-    </div>
+    </>
   );
 };
 

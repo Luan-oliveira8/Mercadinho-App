@@ -1,10 +1,13 @@
 export interface SearchDataGridProps<T> {
-  columns: {
-    key: keyof T;
-    label: string;
-    width?: string;
-  }[];
+  columns: ColumnProps[];
+  titleGrid: string;
   editUrl: string;
   deleteUrl?: string;
   getDataUrl: string;
+}
+
+export interface ColumnProps {
+  key: string;
+  label: string;
+  width?: string;
 }
