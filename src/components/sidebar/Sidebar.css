@@ -1,4 +1,4 @@
-/* .sidebar {
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
@@ -6,15 +6,7 @@
   background-color: #343a40;
   color: white;
   transition: width 0.3s ease;
-  overflow: hidden;
   z-index: 1000;
-} */
-.sidebar {
-  height: 100%;
-  background-color: #343a40;
-  color: white;
-  transition: width 0.3s ease;
-  overflow: hidden;
 }
 
 .sidebar.collapsed {
@@ -32,6 +24,16 @@
   padding: 15px;
   background-color: #495057;
   font-size: 1.2em;
+  position: relative;
+}
+
+.sidebar-header h3 {
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-header h3 {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .sidebar-menu {
@@ -67,4 +69,9 @@
 
 .sidebar.collapsed .sidebar-icon {
   margin: 0 auto;
+}
+
+.sidebar.collapsed .sidebar-header button {
+  left: 50%;
+  transform: translateX(-50%);
 }
