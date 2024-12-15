@@ -1,4 +1,4 @@
-export interface SearchDataGridProps<T> {
+export interface SearchDataGridProps {
   columns: ColumnProps[];
   titleGrid: string;
   editUrl: string;

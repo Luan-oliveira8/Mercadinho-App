@@ -13,7 +13,7 @@ const SearchDataGrid = ({
   deleteUrl,
   getDataUrl,
   titleGrid,
-}: SearchDataGridProps<any>) => {
+}: SearchDataGridProps) => {
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
   const navigate = useNavigate();
   const [data, setData] = useState<any[]>([]);
