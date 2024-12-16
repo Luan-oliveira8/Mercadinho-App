@@ -5,11 +5,11 @@ import { LayoutProps } from "./LayoutProps";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="layout">
+    <div className="container">
       <Sidebar />
       <div className="content-wrapper">
         <Header />
-        <main className="main-content">{children}</main>
+        <main className="main">{children}</main>
       </div>
     </div>
   );
