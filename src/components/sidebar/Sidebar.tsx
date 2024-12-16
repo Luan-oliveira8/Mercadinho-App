@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "reactstrap";
 import {
   FaChevronLeft,
@@ -8,15 +8,12 @@ import {
   FaCog,
   FaInfoCircle,
 } from "react-icons/fa";
+import { useSidebar } from "../../context/sidebarContext/SidebarContext";
+import { MenuItemProps } from "./SidebarProps";
 import "./Sidebar.css";
-import { MenuItemProps, SidebarProps } from "./SidebarProps";
 
-const Sidebar: React.FC<SidebarProps> = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsExpanded(!isExpanded);
-  };
+const Sidebar: React.FC = () => {
+  const { isExpanded, toggleSidebar } = useSidebar();
 
   const menuItems: MenuItemProps[] = [
     { label: "Home", icon: <FaHome />, path: "/" },

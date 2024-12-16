@@ -1,9 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
-import { LayoutProps } from "./LayoutProps";
+import { useSidebar } from "../../context/sidebarContext/SidebarContext";
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { isExpanded } = useSidebar();
+  console.log(isExpanded);
+
   return (
     <div className="container">
       <Sidebar />
