@@ -24,7 +24,6 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className={`sidebar ${isExpanded ? "expanded" : "collapsed"}`}>
-      {/* Header da Sidebar */}
       <div className="sidebar-header">
         <h3>{isExpanded ? "Menu" : "M"}</h3>
         <Button color="primary" onClick={toggleSidebar}>
@@ -32,7 +31,6 @@ const Sidebar: React.FC = () => {
         </Button>
       </div>
 
-      {/* Menu da Sidebar */}
       <ul className="sidebar-menu">
         {menuItems.map((item, index) => (
           <li key={index} className="sidebar-item">

@@ -2,15 +2,17 @@ import React, { ReactNode } from "react";
 import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
 import { useSidebar } from "../../context/sidebarContext/SidebarContext";
+import "./Layout.css";
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isExpanded } = useSidebar();
-  console.log(isExpanded);
 
   return (
-    <div className="container">
+    <div>
       <Sidebar />
-      <div className="content-wrapper">
+      <div
+        className={`content-wrapper ${isExpanded ? "expanded" : "collapsed"}`}
+      >
         <Header />
         <main className="main">{children}</main>
       </div>
