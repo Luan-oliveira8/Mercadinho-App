@@ -6,6 +6,7 @@ import { MdModeEdit } from "react-icons/md";
 import { Table } from "reactstrap";
 import { SearchDataGridProps } from "./SearchDataGridProps";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
+import { useNotification } from "../../context/notificationContext/NotificationContext";
 
 const SearchDataGrid = ({
   columns,
@@ -17,6 +18,7 @@ const SearchDataGrid = ({
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
   const navigate = useNavigate();
   const [data, setData] = useState<any[]>([]);
+  const { showSuccess, showError } = useNotification();
 
   useEffect(
     () => {
@@ -32,10 +34,10 @@ const SearchDataGrid = ({
       if (response.status === OK.value) {
         setData(response.data);
       } else {
-        console.log("No data found");
+        showError("No data found");
       }
     } catch (error: any) {
-      console.log(error.message);
+      showError(`Something went wrong status: ${error.status}.`);
     }
   };
 
@@ -51,13 +53,13 @@ const SearchDataGrid = ({
     try {
       const response = await axios.delete(`${deleteUrl}${selectedItem.id}`);
       if (response.status === OK.value) {
-        console.log("Data deleted successfully");
+        showSuccess("Data deleted successfully");
         setData(data.filter((it) => it.id !== selectedItem.id));
       } else {
-        console.log("Failed to delete the product. Please try again later.");
+        showError("Failed to delete the product. Please try again later.");
       }
     } catch (error: any) {
-      console.log(`Something went wrong status: ${error.status}.`);
+      showError(`Something went wrong status: ${error.status}.`);
     }
   };
 

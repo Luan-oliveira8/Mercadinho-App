@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { login } from "../../redux/user/slice";
+import { useNotification } from "../../context/notificationContext/NotificationContext";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import InputGroup from "../../components/inputGroup/InputGroup";
@@ -12,22 +13,15 @@ import { User } from "../../models/user/User";
 
 const UserLoginView: React.FC = () => {
   const formProps = useForm<UserLoginProps>();
-  const { currentUser } = useSelector((state: any) => state.userReducer);
   const dispatch = useDispatch();
-
-  useEffect(
-    () => {
-      console.log("User logged in successfully:", currentUser);
-    }, // eslint-disable-next-line
-    [currentUser]
-  );
+  const { showSuccess, showError } = useNotification();
 
   const handleSubmitForm = async (formData: UserLoginProps) => {
     try {
       const response = await axios.post<User>(USER_LOGIN.value, formData);
 
       if (response.status === OK.value) {
-        console.log(response.data);
+        showSuccess(`Bem-vindo, ${response.data.name}!`);
 
         dispatch(
           login({
@@ -37,12 +31,12 @@ const UserLoginView: React.FC = () => {
           })
         );
       } else {
-        console.log(
+        showError(
           "Login failed. Please check your email and password and try again."
         );
       }
     } catch (error: any) {
-      console.log(`Something went wrong status: ${error.status}.`);
+      showError(`Something went wrong status: ${error.status}.`);
     }
   };
 

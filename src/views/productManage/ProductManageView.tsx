@@ -13,11 +13,13 @@ import {
   CREATED,
   OK,
 } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
+import { useNotification } from "../../context/notificationContext/NotificationContext";
 
 const ProductManageView: React.FC = () => {
   const formProps = useForm<ProductManageViewProps>();
   const location = useLocation();
   const { selectedItem } = location.state || {};
+  const { showSuccess, showError } = useNotification();
 
   useEffect(
     () => {
@@ -42,12 +44,12 @@ const ProductManageView: React.FC = () => {
     try {
       const response = await axios.post(REGISTER_PRODUCT.value, formData);
       if (response.status === CREATED.value) {
-        console.log(`Product register successfully: ${response.statusText}`);
+        showSuccess("Product register successfully.");
       } else {
-        console.log("Product not registered.");
+        showError("Product not registered.");
       }
     } catch (error: any) {
-      console.log(`Something went wrong status: ${error.status}.`);
+      showError(`Something went wrong status: ${error.status}.`);
     }
   };
 
@@ -58,12 +60,12 @@ const ProductManageView: React.FC = () => {
         formData
       );
       if (response.status === OK.value) {
-        console.log(`Product edited successfully: ${response.statusText}`);
+        showSuccess("Product edited successfully.");
       } else {
-        console.log("Product not edited.");
+        showError("Product not edited.");
       }
     } catch (error: any) {
-      console.log(`Something went wrong status: ${error.status}.`);
+      showError(`Something went wrong status: ${error.status}.`);
     }
   };
 
