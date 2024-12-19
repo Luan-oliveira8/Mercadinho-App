@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputGroup from "../../components/inputGroup/InputGroup";
 import FormGroup from "../../components/formGroup/FormGroup";
@@ -14,10 +14,12 @@ import {
   OK,
 } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
+import { ROUTE_LIST_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 
 const ProductManageView: React.FC = () => {
   const formProps = useForm<ProductManageViewProps>();
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedItem } = location.state || {};
   const { showSuccess, showError } = useNotification();
 
@@ -45,6 +47,7 @@ const ProductManageView: React.FC = () => {
       const response = await axios.post(REGISTER_PRODUCT.value, formData);
       if (response.status === CREATED.value) {
         showSuccess("Product register successfully.");
+        navigate(ROUTE_LIST_PRODUCT.value);
       } else {
         showError("Product not registered.");
       }
@@ -61,6 +64,7 @@ const ProductManageView: React.FC = () => {
       );
       if (response.status === OK.value) {
         showSuccess("Product edited successfully.");
+        navigate(ROUTE_LIST_PRODUCT.value);
       } else {
         showError("Product not edited.");
       }

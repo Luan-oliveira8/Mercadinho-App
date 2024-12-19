@@ -10,10 +10,13 @@ import { USER_LOGIN } from "../../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { UserLoginProps } from "./UserLoginProps";
 import { User } from "../../models/user/User";
+import { ROUTE_LIST_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
+import { useNavigate } from "react-router-dom";
 
 const UserLoginView: React.FC = () => {
   const formProps = useForm<UserLoginProps>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { showSuccess, showError } = useNotification();
 
   const handleSubmitForm = async (formData: UserLoginProps) => {
@@ -30,6 +33,7 @@ const UserLoginView: React.FC = () => {
             isLogged: true,
           })
         );
+        navigate(ROUTE_LIST_PRODUCT.value); // TODO: Implement the view Home futurally to redirect it
       } else {
         showError(
           "Login failed. Please check your email and password and try again."

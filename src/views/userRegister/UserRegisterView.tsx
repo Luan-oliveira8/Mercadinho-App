@@ -7,9 +7,15 @@ import FormGroup from "../../components/formGroup/FormGroup";
 import { USER_REGISTER } from "../../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
 import { CREATED } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_LIST_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/user/slice";
 
 const UserRegisterView: React.FC = () => {
   const formProps = useForm<UserRegisterProps>();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { showSuccess, showError } = useNotification();
 
   const handleSubmitForm = async (formData: UserRegisterProps) => {
@@ -17,7 +23,16 @@ const UserRegisterView: React.FC = () => {
       const response = await axios.post(USER_REGISTER.value, formData);
 
       if (response.status === CREATED.value) {
-        showSuccess(response.statusText);
+        showSuccess(`Bem-vindo, ${response.data.name}!`);
+
+        dispatch(
+          login({
+            name: response.data.name,
+            email: response.data.email,
+            isLogged: true,
+          })
+        );
+        navigate(ROUTE_LIST_PRODUCT.value); // TODO: Implement the view Home futurally to redirect it
       } else {
         showError("User not registered.");
       }
