@@ -7,5 +7,5 @@ export interface SidebarProps {
 export interface MenuItemProps {
   label: string;
   icon: ReactNode;
-  path?: string;
+  path: string;
 }
