@@ -6,4 +6,5 @@ export interface ButtonProps {
   color?: string;
   style?: CSSProperties;
   onClick?: () => void;
+  children?: React.ReactNode;
 }

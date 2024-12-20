@@ -5,8 +5,6 @@ import {
   FaChevronRight,
   FaHome,
   FaBox,
-  FaCog,
-  FaInfoCircle,
   FaUser,
   FaShoppingCart,
 } from "react-icons/fa";

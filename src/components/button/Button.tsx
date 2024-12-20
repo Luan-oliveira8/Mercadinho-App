@@ -8,6 +8,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className,
   color,
+  children,
 }) => {
   return (
     <ReactstrapButton
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
       color={color}
       type="submit"
     >
+      {children}
       {label}
     </ReactstrapButton>
   );

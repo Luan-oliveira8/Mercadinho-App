@@ -4,6 +4,8 @@ import { UseFormReturn } from "react-hook-form";
 export interface FormGroupProps {
   labelButtonSubmit?: string;
   labelButtonCancel?: string;
+  labelButtonInclude?: string;
+  routeInclude?: string;
   className?: string;
   color?: string;
   style?: CSSProperties;
