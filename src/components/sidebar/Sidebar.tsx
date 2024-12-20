@@ -13,6 +13,7 @@ import { MenuItemProps } from "./SidebarProps";
 import "./Sidebar.css";
 import { ROUTE_LIST_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 import { useNavigate } from "react-router-dom";
+import cx from "classnames";
 
 const Sidebar: React.FC = () => {
   const { isExpanded, toggleSidebar } = useSidebar();
@@ -30,7 +31,12 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className={`sidebar ${isExpanded ? "expanded" : "collapsed"}`}>
+    <div
+      className={cx("sidebar", {
+        expanded: isExpanded,
+        collapsed: !isExpanded,
+      })}
+    >
       <div className="sidebar-header">
         <h3>{isExpanded ? "Menu" : "M"}</h3>
         <Button color="primary" onClick={toggleSidebar}>

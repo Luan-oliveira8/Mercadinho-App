@@ -3,6 +3,7 @@ import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
 import { useSidebar } from "../../context/sidebarContext/SidebarContext";
 import "./Layout.css";
+import cx from "classnames";
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isExpanded } = useSidebar();
@@ -11,7 +12,10 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     <div>
       <Sidebar />
       <div
-        className={`content-wrapper ${isExpanded ? "expanded" : "collapsed"}`}
+        className={cx("content-wrapper", {
+          expanded: isExpanded,
+          collapsed: !isExpanded,
+        })}
       >
         <Header />
         <main className="main">{children}</main>
