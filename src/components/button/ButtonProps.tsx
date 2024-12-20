@@ -7,4 +7,5 @@ export interface ButtonProps {
   style?: CSSProperties;
   onClick?: () => void;
   children?: React.ReactNode;
+  hidden?: boolean;
 }

@@ -15,8 +15,9 @@ const FormGroup: React.FC<FormGroupProps> = ({
   labelButtonCancel = "Cancel",
   labelButtonInclude = "Include",
   onSubmit,
-  onClickCancel,
   routeInclude = "",
+  routeCancel = "back",
+  hidenButtonCancel = false,
   beforesubmit,
   afterSubmit,
   children,
@@ -24,8 +25,11 @@ const FormGroup: React.FC<FormGroupProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const onClickInclude = (routeInclude: string) => {
-    navigate(routeInclude);
+  const handleNavigation = (route: string) => {
+    if (route === "back" && window.history.length > 1) {
+      navigate(-1);
+    }
+    navigate(route);
   };
 
   const handleFormSubmit = async (formData?: any) => {
@@ -40,9 +44,6 @@ const FormGroup: React.FC<FormGroupProps> = ({
     if (onSubmit) {
       onSubmit(formData);
     }
-    if (onClickCancel) {
-      onClickCancel();
-    }
   };
 
   return (
@@ -55,8 +56,8 @@ const FormGroup: React.FC<FormGroupProps> = ({
         <Col xs="auto" className="me-4">
           <Button
             label={labelButtonInclude}
-            onClick={() => onClickInclude(routeInclude)}
             className="ms-auto"
+            onClick={() => handleNavigation(routeInclude)}
           >
             <FaPlus className="me-2" />
           </Button>
@@ -68,9 +69,10 @@ const FormGroup: React.FC<FormGroupProps> = ({
       <Row>
         <Col xs="auto">
           <Button
-            className={cx("me-2", { "d-none": !onClickCancel })}
             label={labelButtonCancel}
-            onClick={onClickCancel}
+            className="me-2"
+            hidden={hidenButtonCancel}
+            onClick={() => handleNavigation(routeCancel)}
           />
           <Button
             label={labelButtonSubmit}
