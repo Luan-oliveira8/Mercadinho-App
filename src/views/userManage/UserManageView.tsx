@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { UserRegisterProps } from "./UserRegisterProps";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserRegisterProps } from "./UserManageProps";
 import InputGroup from "../../components/inputGroup/InputGroup";
 import FormGroup from "../../components/formGroup/FormGroup";
 import { USER_REGISTER } from "../../utils/enums/userUrlTypeEnum/UserUrlTypeEnum";
 import { CREATED } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
-import { useNavigate } from "react-router-dom";
 import { ROUTE_LIST_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/user/slice";
 
-const UserRegisterView: React.FC = () => {
+const UserManageView: React.FC = () => {
   const formProps = useForm<UserRegisterProps>();
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isEdit } = location.state || {};
   const { showSuccess, showError } = useNotification();
+
+  useEffect(
+    () => {
+      if (isEdit) {
+        formProps.setValue("email", "Teste");
+        formProps.setValue("name", "Teste");
+      }
+    }, // eslint-disable-next-line
+    [isEdit]
+  );
 
   const handleSubmitForm = async (formData: UserRegisterProps) => {
     try {
@@ -45,7 +57,7 @@ const UserRegisterView: React.FC = () => {
     <FormGroup
       onSubmit={handleSubmitForm}
       formProps={formProps}
-      labelButtonSubmit="Sign Up"
+      labelButtonSubmit={isEdit ? "Confirm" : "Sign Up"}
     >
       <InputGroup
         name="name"
@@ -70,10 +82,11 @@ const UserRegisterView: React.FC = () => {
           },
         }}
         style={{ marginBottom: "10px" }}
+        disabled={isEdit}
       />
       <InputGroup
         name="password"
-        label="Password"
+        label={isEdit ? "New Password" : "Password"}
         control={formProps.control}
         type="password"
         validation={{
@@ -89,4 +102,4 @@ const UserRegisterView: React.FC = () => {
   );
 };
 
-export default UserRegisterView;
+export default UserManageView;

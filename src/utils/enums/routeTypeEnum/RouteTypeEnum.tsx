@@ -7,7 +7,7 @@ export const ROUTE_REGISTER_USER = {
 };
 
 export const ROUTE_EDIT_USER = {
-  value: "/product/edit",
+  value: "/user/edit",
 };
 
 export const ROUTE_REGISTER_PRODUCT = {

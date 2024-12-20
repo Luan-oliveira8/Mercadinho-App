@@ -19,7 +19,15 @@ type InputType =
 
 const InputGroup: React.FC<
   InputGroupProps & { control: Control<any>; type?: InputType }
-> = ({ name, label, validation, type = "text", style, control }) => {
+> = ({
+  name,
+  label,
+  validation,
+  type = "text",
+  style,
+  control,
+  disabled = false,
+}) => {
   return (
     <div style={style}>
       <Label for={name}>{label}</Label>
@@ -35,6 +43,7 @@ const InputGroup: React.FC<
               type={type}
               id={name}
               invalid={!!fieldState?.error}
+              disabled={disabled}
             />
             {fieldState?.error && (
               <FormFeedback>{fieldState.error.message}</FormFeedback>

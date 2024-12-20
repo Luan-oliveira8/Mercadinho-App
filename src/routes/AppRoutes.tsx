@@ -2,13 +2,14 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProductListView from "../views/productListView/ProductListView";
-import UserRegisterView from "../views/userRegister/UserRegisterView";
+import UserManageView from "../views/userManage/UserManageView";
 import UserLoginView from "../views/userlogin/UserLoginView";
 import ProductManageView from "../views/productManage/ProductManageView";
 import PrivateRoute from "../components/privateRoute/PrivateRoute";
 import Layout from "../components/layout/Layout";
 import {
   ROUTE_EDIT_PRODUCT,
+  ROUTE_EDIT_USER,
   ROUTE_LIST_PRODUCT,
   ROUTE_LOGIN,
   ROUTE_REGISTER_PRODUCT,
@@ -41,7 +42,7 @@ const AppRoutes: React.FC = () => {
       path: ROUTE_REGISTER_USER.value,
       element: (
         <Layout>
-          <UserRegisterView />
+          <UserManageView />
         </Layout>
       ),
     },
@@ -71,6 +72,16 @@ const AppRoutes: React.FC = () => {
         <PrivateRoute isLogged={isLogged}>
           <Layout>
             <ProductListView />
+          </Layout>
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: ROUTE_EDIT_USER.value,
+      element: (
+        <PrivateRoute isLogged={isLogged}>
+          <Layout>
+            <UserManageView />
           </Layout>
         </PrivateRoute>
       ),

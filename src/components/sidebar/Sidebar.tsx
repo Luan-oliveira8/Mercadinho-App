@@ -11,7 +11,10 @@ import {
 import { useSidebar } from "../../context/sidebarContext/SidebarContext";
 import { MenuItemProps } from "./SidebarProps";
 import "./Sidebar.css";
-import { ROUTE_LIST_PRODUCT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
+import {
+  ROUTE_EDIT_USER,
+  ROUTE_LIST_PRODUCT,
+} from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 import { useNavigate } from "react-router-dom";
 import cx from "classnames";
 
@@ -23,11 +26,15 @@ const Sidebar: React.FC = () => {
     { label: "Dashboard", icon: <FaHome />, path: "/" },
     { label: "Products", icon: <FaBox />, path: ROUTE_LIST_PRODUCT.value },
     { label: "Cart", icon: <FaShoppingCart />, path: "/" },
-    { label: "User", icon: <FaUser />, path: "/" },
+    { label: "User", icon: <FaUser />, path: ROUTE_EDIT_USER.value },
   ];
 
   const handleNavigation = (path: string) => {
-    navigate(path);
+    if (path === ROUTE_EDIT_USER.value) {
+      navigate(path, { state: { isEdit: true } });
+    } else {
+      navigate(path);
+    }
   };
 
   return (

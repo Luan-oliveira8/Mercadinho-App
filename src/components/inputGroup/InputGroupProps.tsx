@@ -6,4 +6,5 @@ export interface InputGroupProps {
   label: string;
   validation?: RegisterOptions<any>;
   style?: CSSProperties;
+  disabled?: boolean;
 }
