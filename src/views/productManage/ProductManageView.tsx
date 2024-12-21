@@ -130,10 +130,6 @@ const ProductManageView: React.FC = () => {
         control={formProps.control}
         validation={{
           required: true,
-          pattern: {
-            value: /^\d+$/,
-            message: "Quantity must be an integer number",
-          },
           min: {
             value: 1,
             message: "Quantity must be at least 1",
