@@ -9,10 +9,11 @@ import { ColumnProps } from "../../components/searchDataGrid/SearchDataGridProps
 
 const ProductListView: React.FC = () => {
   const columns: ColumnProps[] = [
-    { key: "id", label: "ID", width: "20%" },
+    { key: "id", label: "ID", width: "15%" },
     { key: "name", label: "Product name", width: "20%" },
     { key: "barcode", label: "Barcode", width: "20%" },
-    { key: "selPrice", label: "Sell price", width: "20%" },
+    { key: "selPrice", label: "Sell price", width: "15%" },
+    { key: "quantity", label: "Quantity", width: "15%" },
   ];
 
   return (

@@ -69,7 +69,7 @@ const SearchDataGrid = ({
       <Table bordered className="table-responsive text-center">
         <thead>
           <tr>
-            <th style={{ width: "10%" }}>#</th>
+            <th style={{ width: "5%" }}>Index</th>
             {columns.map((column, index) => (
               <th key={index} style={{ width: column.width || "auto" }}>
                 {column.label}

@@ -29,6 +29,7 @@ const ProductManageView: React.FC = () => {
         formProps.setValue("barcode", selectedItem.barcode);
         formProps.setValue("name", selectedItem.name);
         formProps.setValue("selPrice", selectedItem.selPrice);
+        formProps.setValue("quantity", selectedItem.quantity);
       }
     }, // eslint-disable-next-line
     [selectedItem]
@@ -117,6 +118,25 @@ const ProductManageView: React.FC = () => {
           min: {
             value: 1,
             message: "Value must be greater than zero",
+          },
+        }}
+        style={{ marginBottom: "10px" }}
+      />
+      <InputGroup
+        name="quantity"
+        label="Quantity"
+        type="text"
+        integer={true}
+        control={formProps.control}
+        validation={{
+          required: true,
+          pattern: {
+            value: /^\d+$/,
+            message: "Quantity must be an integer number",
+          },
+          min: {
+            value: 1,
+            message: "Quantity must be at least 1",
           },
         }}
         style={{ marginBottom: "10px" }}

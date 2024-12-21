@@ -2,6 +2,7 @@ import React from "react";
 import { FormFeedback, Input, Label } from "reactstrap";
 import { InputGroupProps } from "./InputGroupProps";
 import { Control, Controller } from "react-hook-form";
+import { removeNonIntegerChars } from "../../utils/validationUtils/validationUtils";
 
 type InputType =
   | "text"
@@ -27,6 +28,7 @@ const InputGroup: React.FC<
   style,
   control,
   disabled = false,
+  integer = false,
 }) => {
   return (
     <div style={style}>
@@ -44,6 +46,12 @@ const InputGroup: React.FC<
               id={name}
               invalid={!!fieldState?.error}
               disabled={disabled}
+              onInput={(e: any) => {
+                if (integer) {
+                  // TODO futuraly refactor this code to use generic method that will only receive a type, which will be an enum.
+                  e.target.value = removeNonIntegerChars(e.target.value);
+                }
+              }}
             />
             {fieldState?.error && (
               <FormFeedback>{fieldState.error.message}</FormFeedback>
