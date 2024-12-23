@@ -1,7 +1,7 @@
 import React from "react";
 import { FormFeedback, Input, Label } from "reactstrap";
 import { InputGroupProps } from "./InputGroupProps";
-import { Control, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { removeNonIntegerChars } from "../../utils/validationUtils/validationUtils";
 
 type InputType =
@@ -18,9 +18,7 @@ type InputType =
   | "radio"
   | "search";
 
-const InputGroup: React.FC<
-  InputGroupProps & { control: Control<any>; type?: InputType }
-> = ({
+const InputGroup: React.FC<InputGroupProps & { type?: InputType }> = ({
   name,
   label,
   validation,

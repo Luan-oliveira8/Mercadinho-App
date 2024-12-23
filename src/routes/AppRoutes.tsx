@@ -8,6 +8,7 @@ import ProductManageView from "../views/productManage/ProductManageView";
 import PrivateRoute from "../components/privateRoute/PrivateRoute";
 import Layout from "../components/layout/Layout";
 import {
+  CART_MANAGE,
   ROUTE_EDIT_PRODUCT,
   ROUTE_EDIT_USER,
   ROUTE_LIST_PRODUCT,
@@ -15,6 +16,7 @@ import {
   ROUTE_REGISTER_PRODUCT,
   ROUTE_REGISTER_USER,
 } from "../utils/enums/routeTypeEnum/RouteTypeEnum";
+import CartManageView from "../views/cartManage/CartManageView";
 
 const AppRoutes: React.FC = () => {
   const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -82,6 +84,16 @@ const AppRoutes: React.FC = () => {
         <PrivateRoute isLogged={isLogged}>
           <Layout>
             <UserManageView />
+          </Layout>
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: CART_MANAGE.value,
+      element: (
+        <PrivateRoute isLogged={isLogged}>
+          <Layout>
+            <CartManageView />
           </Layout>
         </PrivateRoute>
       ),

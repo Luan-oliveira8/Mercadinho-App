@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { RegisterOptions } from "react-hook-form";
+import { Control, RegisterOptions } from "react-hook-form";
 
 export interface InputGroupProps {
   name: string;
@@ -8,4 +8,5 @@ export interface InputGroupProps {
   style?: CSSProperties;
   disabled?: boolean;
   integer?: boolean;
+  control: Control<any>;
 }

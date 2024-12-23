@@ -10,4 +10,6 @@ export interface RadioProps {
   options: RadioOption[];
   control: Control<any>;
   name: string;
+  label?: string;
+  className?: string;
 }

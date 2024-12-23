@@ -12,6 +12,7 @@ import { useSidebar } from "../../context/sidebarContext/SidebarContext";
 import { MenuItemProps } from "./SidebarProps";
 import "./Sidebar.css";
 import {
+  CART_MANAGE,
   ROUTE_EDIT_USER,
   ROUTE_LIST_PRODUCT,
 } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
@@ -25,7 +26,7 @@ const Sidebar: React.FC = () => {
   const menuItems: MenuItemProps[] = [
     { label: "Dashboard", icon: <FaHome />, path: "/" },
     { label: "Products", icon: <FaBox />, path: ROUTE_LIST_PRODUCT.value },
-    { label: "Cart", icon: <FaShoppingCart />, path: "/" },
+    { label: "Cart", icon: <FaShoppingCart />, path: CART_MANAGE.value },
     { label: "User", icon: <FaUser />, path: ROUTE_EDIT_USER.value },
   ];
 
