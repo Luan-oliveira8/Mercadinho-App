@@ -1,8 +1,10 @@
 import React from "react";
+import cx from "classnames";
 import { FormFeedback, Input, Label } from "reactstrap";
 import { InputGroupProps } from "./InputGroupProps";
 import { Controller } from "react-hook-form";
 import { removeNonIntegerChars } from "../../utils/validationUtils/validationUtils";
+import Button from "../button/Button";
 
 type InputType =
   | "text"
@@ -27,6 +29,8 @@ const InputGroup: React.FC<InputGroupProps & { type?: InputType }> = ({
   control,
   disabled = false,
   integer = false,
+  labelButton = "",
+  onclickButton,
 }) => {
   return (
     <div style={style}>
@@ -37,7 +41,7 @@ const InputGroup: React.FC<InputGroupProps & { type?: InputType }> = ({
         defaultValue=""
         rules={validation}
         render={({ field, fieldState }) => (
-          <>
+          <div className="d-flex">
             <Input
               {...field}
               type={type}
@@ -54,7 +58,12 @@ const InputGroup: React.FC<InputGroupProps & { type?: InputType }> = ({
             {fieldState?.error && (
               <FormFeedback>{fieldState.error.message}</FormFeedback>
             )}
-          </>
+            <Button
+              label={labelButton}
+              onClick={onclickButton}
+              className={cx("ms-2", { "d-none": !labelButton })}
+            />
+          </div>
         )}
       />
     </div>

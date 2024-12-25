@@ -9,4 +9,6 @@ export interface InputGroupProps {
   disabled?: boolean;
   integer?: boolean;
   control: Control<any>;
+  labelButton?: string;
+  onclickButton?: () => any;
 }

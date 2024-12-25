@@ -8,6 +8,7 @@ import { GET_PRODUCTS } from "../../utils/enums/productUrlTypeEnum/ProductUrlTyp
 import { Product } from "../../models/product/Product";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
+import { Col, Row } from "reactstrap";
 
 interface ExtraFields {
   searchType: string;
@@ -18,8 +19,10 @@ const CartManageView: React.FC = () => {
   const formProps = useForm<CartManageProps & ExtraFields>({
     defaultValues: { searchType: "barcode" },
   });
+  const watchSearch = formProps.watch("search");
   const { showError } = useNotification();
   const [data, setData] = useState<Product[]>([]);
+  const [filterdProducts, setFilterdProducts] = useState<Product[]>([]);
 
   useEffect(
     () => {
@@ -28,7 +31,9 @@ const CartManageView: React.FC = () => {
     []
   );
 
-  console.log(data);
+  useEffect(() => {
+    console.log(filterdProducts);
+  }, [filterdProducts]);
 
   const findData = async () => {
     try {
@@ -49,23 +54,35 @@ const CartManageView: React.FC = () => {
     { name: "name", label: "Product Name", value: "name" },
   ];
 
+  const searchProducts = () => {
+    setFilterdProducts(
+      data.filter((it) =>
+        it.name.toLowerCase().includes(watchSearch.toLowerCase())
+      )
+    );
+  };
+
   return (
     <div>
       <h3>Shopping Cart</h3>
-      <div>
-        <InputGroup
-          name="search"
-          label="Search"
-          type="text"
-          control={formProps.control}
-        />
-        <Radio
-          className="ms-3"
-          name="searchType"
-          options={radioOptions}
-          control={formProps.control}
-        />
-      </div>
+      <Row>
+        <Col xs="6">
+          <InputGroup
+            name="search"
+            label="Search Products"
+            type="text"
+            control={formProps.control}
+            labelButton="Search"
+            onclickButton={searchProducts}
+          />
+        </Col>
+      </Row>
+      <Radio
+        className="ms-3"
+        name="searchType"
+        options={radioOptions}
+        control={formProps.control}
+      />
     </div>
   );
 };

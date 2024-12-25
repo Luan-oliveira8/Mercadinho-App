@@ -1,8 +1,5 @@
-export interface CartManageProps {
-  name?: string;
-  barcode?: string;
-  selPrice?: number;
-  quantity?: number;
+import { Product } from "../../models/product/Product";
 
-  search?: string;
+export interface CartManageProps {
+  cartProducts?: Product[];
 }
