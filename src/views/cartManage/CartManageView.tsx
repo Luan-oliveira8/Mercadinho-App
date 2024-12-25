@@ -9,6 +9,7 @@ import { Product } from "../../models/product/Product";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
 import { Col, Row } from "reactstrap";
+import GenericModal from "../../components/genericModal/GenericModal";
 
 interface ExtraFields {
   searchType: string;
@@ -23,6 +24,7 @@ const CartManageView: React.FC = () => {
   const { showError } = useNotification();
   const [data, setData] = useState<Product[]>([]);
   const [filterdProducts, setFilterdProducts] = useState<Product[]>([]);
+  const [modal, setModal] = useState<React.ReactNode>(null);
 
   useEffect(
     () => {
@@ -32,8 +34,26 @@ const CartManageView: React.FC = () => {
   );
 
   useEffect(() => {
-    console.log(filterdProducts);
+    if (filterdProducts.length > 0) {
+      setModal(
+        <GenericModal
+          isOpen={true}
+          closeModal={teste}
+          size="lg"
+          titleModal="Teste"
+        />
+      );
+    }
   }, [filterdProducts]);
+
+  const teste = () => {
+    setModal(null);
+    console.log("Fechar Modal");
+  };
+
+  useEffect(() => {
+    console.log(modal);
+  }, [modal]);
 
   const findData = async () => {
     try {
@@ -64,6 +84,7 @@ const CartManageView: React.FC = () => {
 
   return (
     <div>
+      {modal}
       <h3>Shopping Cart</h3>
       <Row>
         <Col xs="6">
