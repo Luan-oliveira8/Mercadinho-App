@@ -1,6 +1,5 @@
 import React from "react";
-import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import cx from "classnames";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { GenericModalProps } from "./GenericModalProps";
 import Button from "../button/Button";
 
@@ -21,16 +20,10 @@ const GenericModal: React.FC<GenericModalProps> = ({
     >
       <ModalHeader toggle={closeModal}>{titleModal}</ModalHeader>
       <ModalBody>{children}</ModalBody>
-      <div className="my-2">
+      <ModalFooter>
         <Button label="Cancel" onClick={closeModal} className="btn-sm mx-2" />
-        <Button
-          label="Submit"
-          onClick={subimitModal}
-          className={cx("btn-sm", {
-            "d-none": !subimitModal,
-          })}
-        />
-      </div>
+        <Button label="Submit" onClick={subimitModal} className="btn-sm" />
+      </ModalFooter>
     </Modal>
   );
 };

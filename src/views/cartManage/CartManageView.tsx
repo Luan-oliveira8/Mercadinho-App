@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CartManageProps } from "./CartManageProps";
 import Radio from "../../components/radio/Radio";
@@ -9,7 +9,8 @@ import { Product } from "../../models/product/Product";
 import { OK } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
 import { Col, Row } from "reactstrap";
-import GenericModal from "../../components/genericModal/GenericModal";
+import Teste from "../../components/productSearchModal/ProductSearchModal";
+import { ColumnProps } from "../../components/searchDataGrid/SearchDataGridProps";
 
 interface ExtraFields {
   searchType: string;
@@ -25,6 +26,7 @@ const CartManageView: React.FC = () => {
   const [data, setData] = useState<Product[]>([]);
   const [filterdProducts, setFilterdProducts] = useState<Product[]>([]);
   const [modal, setModal] = useState<React.ReactNode>(null);
+  const modalRef = useRef<any>(null);
 
   useEffect(
     () => {
@@ -33,22 +35,38 @@ const CartManageView: React.FC = () => {
     []
   );
 
+  const columns: ColumnProps[] = [
+    { key: "name", label: "Product", width: "20%" },
+    { key: "barcode", label: "Barcode", width: "20%" },
+    { key: "selPrice", label: "Sell price", width: "15%" },
+  ];
+
   useEffect(() => {
     if (filterdProducts.length > 0) {
       setModal(
-        <GenericModal
-          isOpen={true}
-          closeModal={teste}
+        <Teste
+          ref={modalRef}
+          closeModal={closeModal}
           size="lg"
           titleModal="Teste"
+          subimitModal={handleSubmitModal}
+          data={filterdProducts}
+          columns={columns}
         />
       );
     }
   }, [filterdProducts]);
 
-  const teste = () => {
+  const handleSubmitModal = () => {
+    if (modalRef.current) {
+      const selectedItems = modalRef.current.getSelectedItems();
+      console.log("Itens Selecionados:", selectedItems);
+      setModal(null);
+    }
+  };
+
+  const closeModal = () => {
     setModal(null);
-    console.log("Fechar Modal");
   };
 
   useEffect(() => {
