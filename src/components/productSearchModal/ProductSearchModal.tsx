@@ -3,7 +3,7 @@ import GenericModal from "../genericModal/GenericModal";
 import { ProductSearchModalProps } from "./ProductSearchModalProps";
 
 const ProductSearchModal = forwardRef((props: ProductSearchModalProps, ref) => {
-  const { closeModal, subimitModal, titleModal, size, data, columns } = props;
+  const { closeModal, subimitModal, titleModal, data, columns } = props;
 
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
@@ -22,7 +22,7 @@ const ProductSearchModal = forwardRef((props: ProductSearchModalProps, ref) => {
       <GenericModal
         isOpen={true}
         closeModal={closeModal}
-        size={size}
+        size="lg"
         titleModal={titleModal}
         subimitModal={subimitModal}
       >
