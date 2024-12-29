@@ -33,6 +33,7 @@ const CartManageView: React.FC = () => {
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [modal, setModal] = useState<React.ReactNode>(null);
   const modalRef = useRef<any>(null);
+  const listRef = useRef<any>(null);
 
   useEffect(
     () => {
@@ -68,11 +69,7 @@ const CartManageView: React.FC = () => {
   };
 
   const handleSubmitModal = () => {
-    if (
-      modalRef &&
-      modalRef.current &&
-      listIsNotEmpty(modalRef.current.getSelectedItems())
-    ) {
+    if (listIsNotEmpty(modalRef.current.getSelectedItems())) {
       updateCartItems(modalRef.current.getSelectedItems());
       closeModal();
     } else {
@@ -144,11 +141,13 @@ const CartManageView: React.FC = () => {
 
   const onIncreaseQuantity = (product: Product) => {
     product.quantity += 1;
+    rerenderListDataGrid();
   };
 
   const onDecreaseQuantity = (product: Product) => {
     if (product.quantity > 1) {
       product.quantity -= 1;
+      rerenderListDataGrid();
     } else {
       onDeleteProduct(product);
     }
@@ -156,6 +155,10 @@ const CartManageView: React.FC = () => {
 
   const onDeleteProduct = (product: Product) => {
     setCartProducts(cartProducts.filter((it) => it.id !== product.id));
+  };
+
+  const rerenderListDataGrid = () => {
+    listRef.current.forceRender();
   };
 
   return (
@@ -181,6 +184,7 @@ const CartManageView: React.FC = () => {
         control={formProps.control}
       />
       <ListDataGrid
+        ref={listRef}
         data={cartProducts}
         columns={columnsListDataGrid}
         className={cx("mt-2", { "d-none": listIsEmpty(data) })}
