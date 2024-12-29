@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import cx from "classnames";
 import { useForm } from "react-hook-form";
 import { CartManageProps } from "./CartManageProps";
 import Radio from "../../components/radio/Radio";
@@ -15,6 +16,7 @@ import {
   listIsEmpty,
   listIsNotEmpty,
 } from "../../utils/validationUtils/validationUtils";
+import ListDataGrid from "../../components/listDataGrid/ListDataGrid";
 
 interface ExtraFields {
   searchType: string;
@@ -39,10 +41,17 @@ const CartManageView: React.FC = () => {
     []
   );
 
-  const columns: ColumnProps[] = [
+  const columnsModal: ColumnProps[] = [
     { key: "name", label: "Product", width: "20%" },
     { key: "barcode", label: "Barcode", width: "20%" },
     { key: "selPrice", label: "Sell price", width: "15%" },
+  ];
+
+  const columnsListDataGrid: ColumnProps[] = [
+    { key: "name", label: "Product", width: "20%" },
+    { key: "barcode", label: "Barcode", width: "20%" },
+    { key: "selPrice", label: "Sell price", width: "15%" },
+    { key: "quantity", label: "Quantity", width: "15%" },
   ];
 
   const openModal = (filterdProducts: Product[]) => {
@@ -53,7 +62,7 @@ const CartManageView: React.FC = () => {
         titleModal="Products filtred"
         subimitModal={handleSubmitModal}
         data={filterdProducts}
-        columns={columns}
+        columns={columnsModal}
       />
     );
   };
@@ -133,6 +142,22 @@ const CartManageView: React.FC = () => {
     openModal(filterdProducts);
   };
 
+  const onIncreaseQuantity = (product: Product) => {
+    product.quantity += 1;
+  };
+
+  const onDecreaseQuantity = (product: Product) => {
+    if (product.quantity > 1) {
+      product.quantity -= 1;
+    } else {
+      onDeleteProduct(product);
+    }
+  };
+
+  const onDeleteProduct = (product: Product) => {
+    setCartProducts(cartProducts.filter((it) => it.id !== product.id));
+  };
+
   return (
     <div>
       {modal}
@@ -154,6 +179,14 @@ const CartManageView: React.FC = () => {
         name="searchType"
         options={radioOptions}
         control={formProps.control}
+      />
+      <ListDataGrid
+        data={cartProducts}
+        columns={columnsListDataGrid}
+        className={cx("mt-2", { "d-none": listIsEmpty(data) })}
+        onIncreaseQuantity={onIncreaseQuantity}
+        onDecreaseQuantity={onDecreaseQuantity}
+        onDeleteProduct={onDeleteProduct}
       />
     </div>
   );
