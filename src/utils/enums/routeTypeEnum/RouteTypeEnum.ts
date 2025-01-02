@@ -26,4 +26,8 @@ export const CART_MANAGE = {
   value: "/cart",
 };
 
+export const CART_CHECKOUT = {
+  value: "/cart/checkout",
+};
+
 export const ROUTE_URLS_TYPE_ENUM = [ROUTE_EDIT_PRODUCT, ROUTE_EDIT_USER];

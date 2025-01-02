@@ -13,6 +13,9 @@ import { ColumnProps } from "../../components/searchDataGrid/SearchDataGridProps
 import { listIsEmpty } from "../../utils/validationUtils/validationUtils";
 import ListDataGrid from "../../components/listDataGrid/ListDataGrid";
 import SearchInput from "../../components/searchInput/SearchInput";
+import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
+import { CART_CHECKOUT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 
 const CartManageView: React.FC = () => {
   const formProps = useForm<CartManageProps>({
@@ -20,6 +23,7 @@ const CartManageView: React.FC = () => {
   });
   const watchSearchType = formProps.watch("searchType");
   const { showError } = useNotification();
+  const navigate = useNavigate();
   const [data, setData] = useState<Product[]>([]);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const listRef = useRef<any>(null);
@@ -98,6 +102,10 @@ const CartManageView: React.FC = () => {
     updateCartItems(item);
   };
 
+  const onSubmitCartManage = () => {
+    navigate(CART_CHECKOUT.value, { state: { cartProducts } });
+  };
+
   return (
     <div>
       <h3>Shopping Cart</h3>
@@ -125,6 +133,7 @@ const CartManageView: React.FC = () => {
         onDecreaseQuantity={onDecreaseQuantity}
         onDeleteProduct={onDeleteProduct}
       />
+      <Button label="Submit" onClick={onSubmitCartManage} />
     </div>
   );
 };
