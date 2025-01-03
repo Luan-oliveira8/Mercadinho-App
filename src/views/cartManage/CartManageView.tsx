@@ -14,8 +14,8 @@ import { listIsEmpty } from "../../utils/validationUtils/validationUtils";
 import ListDataGrid from "../../components/listDataGrid/ListDataGrid";
 import SearchInput from "../../components/searchInput/SearchInput";
 import Button from "../../components/button/Button";
-import { useNavigate } from "react-router-dom";
-import { CART_CHECKOUT } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
+import GenericModal from "../../components/genericModal/GenericModal";
+import CartCheckout from "../cartCheckout/CartCheckout";
 
 const CartManageView: React.FC = () => {
   const formProps = useForm<CartManageProps>({
@@ -23,10 +23,10 @@ const CartManageView: React.FC = () => {
   });
   const watchSearchType = formProps.watch("searchType");
   const { showError } = useNotification();
-  const navigate = useNavigate();
   const [data, setData] = useState<Product[]>([]);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const listRef = useRef<any>(null);
+  const [modal, setModal] = useState<React.ReactNode>(null);
 
   useEffect(
     () => {
@@ -103,11 +103,20 @@ const CartManageView: React.FC = () => {
   };
 
   const onSubmitCartManage = () => {
-    navigate(CART_CHECKOUT.value, { state: { cartProducts } });
+    setModal(
+      <GenericModal
+        isOpen={true}
+        closeModal={() => setModal(false)}
+        size="sm"
+        titleModal="Teste"
+        children={<CartCheckout data={cartProducts} />}
+      />
+    );
   };
 
   return (
     <div>
+      {modal}
       <h3>Shopping Cart</h3>
       <Row>
         <Col xs="6">

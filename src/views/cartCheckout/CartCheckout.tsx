@@ -4,22 +4,26 @@ import InputGroup from "../../components/inputGroup/InputGroup";
 import { useForm } from "react-hook-form";
 import { Col, Row } from "reactstrap";
 import FormGroup from "../../components/formGroup/FormGroup";
-import { useLocation } from "react-router-dom";
+import { Product } from "../../models/product/Product";
 
-const CartCheckout: React.FC<CartCheckoutProps> = () => {
+interface ExtraFields {
+  data: Product[];
+}
+
+const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({ data }) => {
   const formProps = useForm<CartCheckoutProps>();
-  const location = useLocation();
-  const { cartProducts } = location.state || {};
 
   useEffect(
     () => {
-      setTimeout(() => {
-        cartProducts.forEach((element: any) => {
-          console.log(element);
-        });
-      }, 200);
+      if (!formProps.getValues().totalAmount) {
+        const totalAmount = data.reduce(
+          (sum, it) => sum + Number(it.selPrice),
+          0
+        );
+        formProps.setValue("totalAmount", totalAmount);
+      }
     }, // eslint-disable-next-line
-    [cartProducts]
+    []
   );
 
   return (
@@ -32,6 +36,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = () => {
               name="totalAmount"
               label="Total amount"
               control={formProps.control}
+              disabled={true}
             />
             <InputGroup
               type="number"
@@ -46,9 +51,6 @@ const CartCheckout: React.FC<CartCheckoutProps> = () => {
               control={formProps.control}
               disabled={true}
             />
-          </Col>
-          <Col xs="8">
-            <p>AAAAAA</p>
           </Col>
         </Row>
       </FormGroup>

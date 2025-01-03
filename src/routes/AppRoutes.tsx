@@ -7,8 +7,8 @@ import UserLoginView from "../views/userlogin/UserLoginView";
 import ProductManageView from "../views/productManage/ProductManageView";
 import PrivateRoute from "../components/privateRoute/PrivateRoute";
 import Layout from "../components/layout/Layout";
+import CartManageView from "../views/cartManage/CartManageView";
 import {
-  CART_CHECKOUT,
   CART_MANAGE,
   ROUTE_EDIT_PRODUCT,
   ROUTE_EDIT_USER,
@@ -17,8 +17,6 @@ import {
   ROUTE_REGISTER_PRODUCT,
   ROUTE_REGISTER_USER,
 } from "../utils/enums/routeTypeEnum/RouteTypeEnum";
-import CartManageView from "../views/cartManage/CartManageView";
-import CartCheckout from "../views/cartCheckout/CartCheckout";
 
 const AppRoutes: React.FC = () => {
   const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -86,16 +84,6 @@ const AppRoutes: React.FC = () => {
         <PrivateRoute isLogged={isLogged}>
           <Layout>
             <UserManageView />
-          </Layout>
-        </PrivateRoute>
-      ),
-    },
-    {
-      path: CART_CHECKOUT.value,
-      element: (
-        <PrivateRoute isLogged={isLogged}>
-          <Layout>
-            <CartCheckout />
           </Layout>
         </PrivateRoute>
       ),
