@@ -18,6 +18,7 @@ const FormGroup: React.FC<FormGroupProps> = ({
   routeInclude = "",
   routeCancel = "back",
   hidenButtonCancel = false,
+  hidenButtonSubmit = false,
   beforesubmit,
   afterSubmit,
   children,
@@ -77,6 +78,7 @@ const FormGroup: React.FC<FormGroupProps> = ({
           <Button
             label={labelButtonSubmit}
             onClick={formProps.handleSubmit(handleFormSubmit)}
+            hidden={hidenButtonSubmit}
           />
         </Col>
       </Row>

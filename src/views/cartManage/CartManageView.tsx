@@ -110,6 +110,8 @@ const CartManageView: React.FC = () => {
         size="sm"
         titleModal="Teste"
         children={<CartCheckout data={cartProducts} />}
+        hidenButtonCancel={true}
+        hidenButtonSubmit={true}
       />
     );
   };

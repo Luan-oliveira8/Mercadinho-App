@@ -5,4 +5,6 @@ export interface GenericModalProps {
   subimitModal?: () => void;
   size?: string;
   titleModal?: string;
+  hidenButtonCancel?: boolean;
+  hidenButtonSubmit?: boolean;
 }

@@ -10,6 +10,8 @@ const GenericModal: React.FC<GenericModalProps> = ({
   subimitModal,
   size,
   titleModal,
+  hidenButtonCancel = false,
+  hidenButtonSubmit = false,
 }) => {
   return (
     <Modal
@@ -21,8 +23,18 @@ const GenericModal: React.FC<GenericModalProps> = ({
       <ModalHeader toggle={closeModal}>{titleModal}</ModalHeader>
       <ModalBody>{children}</ModalBody>
       <ModalFooter>
-        <Button label="Cancel" onClick={closeModal} className="btn-sm mx-2" />
-        <Button label="Submit" onClick={subimitModal} className="btn-sm" />
+        <Button
+          label="Cancel"
+          onClick={closeModal}
+          className="btn-sm mx-2"
+          hidden={hidenButtonCancel}
+        />
+        <Button
+          label="Submit"
+          onClick={subimitModal}
+          className="btn-sm"
+          hidden={hidenButtonSubmit}
+        />
       </ModalFooter>
     </Modal>
   );

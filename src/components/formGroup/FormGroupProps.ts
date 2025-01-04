@@ -8,6 +8,7 @@ export interface FormGroupProps {
   routeInclude?: string;
   routeCancel?: string;
   hidenButtonCancel?: boolean;
+  hidenButtonSubmit?: boolean;
   className?: string;
   color?: string;
   style?: CSSProperties;
