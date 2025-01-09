@@ -67,7 +67,7 @@ const CartManageView: React.FC = () => {
         showError("No data found");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 

@@ -37,7 +37,7 @@ const SearchDataGrid = ({
         showError("No data found");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 
@@ -59,7 +59,7 @@ const SearchDataGrid = ({
         showError("Failed to delete the product. Please try again later.");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 

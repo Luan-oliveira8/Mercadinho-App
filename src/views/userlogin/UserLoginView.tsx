@@ -40,7 +40,7 @@ const UserLoginView: React.FC = () => {
         );
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 

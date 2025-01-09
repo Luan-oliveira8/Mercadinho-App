@@ -49,7 +49,7 @@ const UserManageView: React.FC = () => {
         showError("User not registered.");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 

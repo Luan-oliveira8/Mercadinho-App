@@ -61,9 +61,8 @@ const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({
         showError("Purchase not registered.");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
-    console.log(formData);
   };
 
   return (

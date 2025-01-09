@@ -53,7 +53,7 @@ const ProductManageView: React.FC = () => {
         showError("Product not registered.");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 
@@ -70,7 +70,7 @@ const ProductManageView: React.FC = () => {
         showError("Product not edited.");
       }
     } catch (error: any) {
-      showError(`Something went wrong status: ${error.status}.`);
+      showError(error.response.data);
     }
   };
 
