@@ -10,24 +10,30 @@ import { REGISTER_PURCHASE_AND_UPDATE_STOCK } from "../../utils/enums/productUrl
 import { CREATED } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCodeTypeEnum";
 import { useNavigate } from "react-router-dom";
 import { CART_MANAGE } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
+import { useNotification } from "../../context/notificationContext/NotificationContext";
 
 interface ExtraFields {
-  data: Product[];
+  parentData: Product[];
 }
 
-const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({ data }) => {
+const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({
+  parentData,
+}) => {
   const formProps = useForm<CartCheckoutProps>();
   const navigate = useNavigate();
+  const { showSuccess, showError } = useNotification();
   const watchPaidAmount = formProps.watch("paidAmount");
 
   useEffect(
     () => {
       if (!formProps.getValues().totalAmount) {
-        const totalAmount = data.reduce(
+        formProps.register("data", { value: parentData });
+        const totalAmount = parentData.reduce(
           (sum, it) => sum + Number(it.selPrice),
           0
         );
         formProps.setValue("totalAmount", totalAmount);
+        console.log(formProps.getValues().data);
       }
     }, // eslint-disable-next-line
     []
@@ -93,9 +99,3 @@ const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({ data }) => {
 };
 
 export default CartCheckout;
-function showSuccess(arg0: string) {
-  throw new Error("Function not implemented.");
-}
-function showError(arg0: string) {
-  throw new Error("Function not implemented.");
-}
