@@ -17,6 +17,9 @@ const Header: React.FC = () => {
       <Link to="/product/register">
         <Button label="Register Product" />
       </Link>
+      <Link to="/home">
+        <Button label="Home" />
+      </Link>
     </div>
   );
 };

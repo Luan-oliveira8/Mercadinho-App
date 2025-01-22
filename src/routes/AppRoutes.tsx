@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProductListView from "../views/productListView/ProductListView";
+import ProductListView from "../views/productList/ProductListView";
 import UserManageView from "../views/userManage/UserManageView";
 import UserLoginView from "../views/userlogin/UserLoginView";
 import ProductManageView from "../views/productManage/ProductManageView";
@@ -10,6 +10,7 @@ import Layout from "../components/layout/Layout";
 import CartManageView from "../views/cartManage/CartManageView";
 import {
   CART_MANAGE,
+  HOME,
   ROUTE_EDIT_PRODUCT,
   ROUTE_EDIT_USER,
   ROUTE_LIST_PRODUCT,
@@ -17,6 +18,7 @@ import {
   ROUTE_REGISTER_PRODUCT,
   ROUTE_REGISTER_USER,
 } from "../utils/enums/routeTypeEnum/RouteTypeEnum";
+import HomeView from "../views/home/homeView";
 
 const AppRoutes: React.FC = () => {
   const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -45,6 +47,14 @@ const AppRoutes: React.FC = () => {
       element: (
         <Layout>
           <UserManageView />
+        </Layout>
+      ),
+    },
+    {
+      path: HOME.value,
+      element: (
+        <Layout>
+          <HomeView />
         </Layout>
       ),
     },

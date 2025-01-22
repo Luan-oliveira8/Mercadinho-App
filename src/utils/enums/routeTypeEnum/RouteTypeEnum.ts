@@ -30,4 +30,8 @@ export const CART_CHECKOUT = {
   value: "/cart/checkout",
 };
 
+export const HOME = {
+  value: "/home",
+};
+
 export const ROUTE_URLS_TYPE_ENUM = [ROUTE_EDIT_PRODUCT, ROUTE_EDIT_USER];
