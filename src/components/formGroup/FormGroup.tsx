@@ -34,13 +34,11 @@ const FormGroup: React.FC<FormGroupProps> = ({
   };
 
   const handleFormSubmit = async (formData?: any) => {
-    if (beforesubmit && onSubmit) {
-      await beforesubmit();
-      onSubmit(formData);
+    if (beforesubmit) {
+      await beforesubmit(formData);
     }
-    if (afterSubmit && onSubmit) {
-      await onSubmit(formData);
-      afterSubmit();
+    if (afterSubmit) {
+      await afterSubmit();
     }
     if (onSubmit) {
       onSubmit(formData);

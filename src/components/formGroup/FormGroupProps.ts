@@ -16,6 +16,6 @@ export interface FormGroupProps {
   onSubmit?: (formData: any) => unknown;
   onClickCancel?: () => void;
   afterSubmit?: () => unknown;
-  beforesubmit?: () => unknown;
+  beforesubmit?: (formData: any) => any;
   formProps: UseFormReturn;
 }

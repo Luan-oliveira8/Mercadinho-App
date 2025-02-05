@@ -11,6 +11,8 @@ import { CREATED } from "../../utils/enums/httpStatusCodeTypeEnum/HttpStatusCode
 import { useNavigate } from "react-router-dom";
 import { CART_MANAGE } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
+import { parseDateToRef } from "../../utils/dateUtils/dateUtils";
+import { promises } from "dns";
 
 interface ExtraFields {
   parentData: Product[];
@@ -33,7 +35,6 @@ const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({
           0
         );
         formProps.setValue("totalAmount", totalAmount);
-        console.log(formProps.getValues().data);
       }
     }, // eslint-disable-next-line
     []
@@ -65,9 +66,17 @@ const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({
     }
   };
 
+  const beforesubmit = async (formData: CartCheckoutProps) => {
+    formData.purchaseReference = parseDateToRef(new Date());
+  };
+
   return (
     <>
-      <FormGroup formProps={formProps} onSubmit={handleSubmitForm}>
+      <FormGroup
+        formProps={formProps}
+        onSubmit={handleSubmitForm}
+        beforesubmit={beforesubmit}
+      >
         <Row>
           <Col xs="4">
             <InputGroup
