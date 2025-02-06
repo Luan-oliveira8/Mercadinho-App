@@ -6,4 +6,5 @@ export interface CartCheckoutProps {
   paidAmount?: number;
   purchaseReference?: string;
   data?: Product[];
+  onClickCancel?: () => void;
 }

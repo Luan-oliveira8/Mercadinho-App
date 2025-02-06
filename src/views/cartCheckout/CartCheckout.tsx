@@ -12,14 +12,15 @@ import { useNavigate } from "react-router-dom";
 import { CART_MANAGE } from "../../utils/enums/routeTypeEnum/RouteTypeEnum";
 import { useNotification } from "../../context/notificationContext/NotificationContext";
 import { parseDateToRef } from "../../utils/dateUtils/dateUtils";
-import { promises } from "dns";
 
 interface ExtraFields {
   parentData: Product[];
+  onClickCancel?: () => void;
 }
 
 const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({
   parentData,
+  onClickCancel,
 }) => {
   const formProps = useForm<CartCheckoutProps>();
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ const CartCheckout: React.FC<CartCheckoutProps & ExtraFields> = ({
         formProps={formProps}
         onSubmit={handleSubmitForm}
         beforesubmit={beforesubmit}
+        onClickCancel={onClickCancel}
       >
         <Row>
           <Col xs="4">

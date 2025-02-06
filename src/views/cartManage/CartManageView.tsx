@@ -109,7 +109,12 @@ const CartManageView: React.FC = () => {
         closeModal={() => setModal(false)}
         size="sm"
         titleModal="Teste"
-        children={<CartCheckout parentData={cartProducts} />}
+        children={
+          <CartCheckout
+            parentData={cartProducts}
+            onClickCancel={() => setModal(false)}
+          />
+        }
         hidenButtonCancel={true}
         hidenButtonSubmit={true}
       />

@@ -23,10 +23,11 @@ const FormGroup: React.FC<FormGroupProps> = ({
   afterSubmit,
   children,
   formProps,
+  onClickCancel,
 }) => {
   const navigate = useNavigate();
 
-  const handleNavigation = (route: string) => {
+  const handleNavigation = (route: string) => () => {
     if (route === "back" && window.history.length > 1) {
       navigate(-1);
     }
@@ -71,7 +72,9 @@ const FormGroup: React.FC<FormGroupProps> = ({
             label={labelButtonCancel}
             className="me-2"
             hidden={hidenButtonCancel}
-            onClick={() => handleNavigation(routeCancel)}
+            onClick={
+              onClickCancel ? onClickCancel : handleNavigation(routeCancel)
+            }
           />
           <Button
             label={labelButtonSubmit}
